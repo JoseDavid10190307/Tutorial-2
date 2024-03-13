@@ -1,0 +1,13 @@
+{% extends 'pages/base.html' %}
+{% block title %}Estadísticas de Vuelos{% endblock %}
+{% block header_title %}Estadísticas de Vuelos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Vuelos Registrados:</h3>
+    <p>{{ vuelos_nacionales }} Nacionales, {{ vuelos_internacionales }} Internacionales</p>
+
+    <h3>Precio Promedio de Vuelos Nacionales:</h3>
+    <p>{{ precio_promedio_nacionales }}</p>
+</div>
+{% endblock %}

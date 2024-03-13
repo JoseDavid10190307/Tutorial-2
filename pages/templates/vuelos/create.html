@@ -1,0 +1,36 @@
+{% extends 'pages/base.html' %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Registrar Vuelos</div>
+          <div class="card-body">
+            {% if form.errors %}
+                <ul id="errors" class="alert alert-danger list-unstyled">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <form method="POST" action="{% url 'form' %}">
+              {% csrf_token %}
+              <input type="text" class="form-control mb-2" placeholder="Ingresa el Nombre del vuelo" name="name" value="{{form.data.name }}" />
+              <select class="form-control mb-2" name="tipo">
+                <option value="Internacional" {% if form.data.tipo == 'Internacional' %} selected {% endif %}>internacional</option>
+                <option value="Nacional" {% if form.data.tipo == 'Nacional' %} selected {% endif %}>nacional</option>
+              </select>
+              <input type="number" class="form-control mb-2" placeholder="Ingresa el Precio del vuelo" name="price" value="{{form.data.price }}" />
+              <input type="submit" class="btn btn-primary" value="Send" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endblock %}
